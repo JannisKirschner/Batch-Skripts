@@ -1,7 +1,7 @@
 rem Author: Jannis Kirschner
 rem Copyright: (c) Jannis Kirschner, 2017
 rem Licence: GPL 3
-rem Version: 0.2.1
+rem Version: 0.2.2
 
 
 
@@ -137,7 +137,7 @@ rem Stopwatch implementation
 	
 goto main
 
-goto main
+
 
 
 
