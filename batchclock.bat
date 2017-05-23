@@ -1,7 +1,7 @@
 rem Author: Jannis Kirschner
 rem Copyright: (c) Jannis Kirschner, 2017
 rem Licence: GPL 3
-rem Version: 0.1.0
+rem Version: 0.2.1
 
 
 
@@ -107,7 +107,35 @@ goto main
 rem Stopwatch implementation
 :stopwatch
 	echo.
-	echo "Nothing to see here...yet"
+	echo "Welcome to stopwatch..."
+	set /p starttimetrigger="Press enter to start/stop"
+	rem if /i %soundchoice%==""  goto startcountdown
+	rem goto main
+	:startcountdown
+		set starttime= %time%
+		set /p endtimetrigger=""
+		set endtime= %time%
+		for /f "tokens=1,2,3,4 delims=:. " %%a in ("%starttime%") do set shr=%%a&set smin=%%b&set ssec=%%c&set smsec=%%d&set > nul
+		for /f "tokens=1,2,3,4 delims=:. " %%a in ("%endtime%") do set ehr=%%a&set emin=%%b&set esec=%%c&set emsec=%%d&set > nul
+			
+		set /a hr=%ehr%-%shr%
+		set /a min=%emin%-%smin%
+		set /a sec=%esec%-%ssec%	
+		set /a msec=%emsec%-%smsec%
+		echo.
+		echo "Time passed: "
+		echo %hr%  %min% %sec%  %msec% 
+		
+			
+		echo.
+		echo.
+		echo "Starttime: "%starttime% 
+		echo "Endtime: "%endtime%
+		echo.
+		echo.
+		echo.
+	
+goto main
 
 goto main
 
