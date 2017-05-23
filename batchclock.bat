@@ -109,8 +109,7 @@ rem Stopwatch implementation
 	echo.
 	echo "Welcome to stopwatch..."
 	set /p starttimetrigger="Press enter to start/stop"
-	rem if /i %soundchoice%==""  goto startcountdown
-	rem goto main
+	
 	:startcountdown
 		set starttime= %time%
 		set /p endtimetrigger=""
