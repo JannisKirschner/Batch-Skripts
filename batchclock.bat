@@ -98,7 +98,8 @@ goto main
 
 rem Countdown implementation
 :countdown
-	echo "no"
+	echo.
+	echo "Nothing to see here...yet"
 goto main
 
 
@@ -106,7 +107,7 @@ goto main
 rem Stopwatch implementation
 :stopwatch
 	echo.
-	echo "Welcome to stopwatch..."
+	echo "Nothing to see here...yet"
 
 goto main
 
