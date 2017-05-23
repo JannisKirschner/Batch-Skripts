@@ -97,9 +97,58 @@ goto main
 
 
 rem Countdown implementation
-:countdown
-	echo.
-	echo "Nothing to see here...yet"
+echo.
+	echo "Welcome to countdown..."
+	echo "Alarm with sound or browser?"
+	set /p countdownsoundchoice="1=File/2=Browser: "
+	if /i %countdownsoundchoice%== 1  goto countdownfile
+	if /i %countdownsoundchoice%== 2  goto countdownbrowser
+	goto :countdown
+
+
+	:countdownfile
+		set /p countdownsoundfile="Drag&Drop File Path: "
+	goto countdownclock
+
+
+
+	:countdownbrowser
+		set /p countdownwebsite="Enter Link: "
+	goto countdownclock
+
+
+	:countdownclock
+		echo "Enter time till alarm (00:00:00.00) Hours:Mins:Secs.Milisecs"
+		echo.
+		set /p countdowntime="Countdowntime: "
+		set currenttime=%time%
+		for /f "tokens=1,2,3,4 delims=:. " %%a in ("%currenttime%") do set shr=%%a&set smin=%%b&set ssec=%%c&set smsec=%%d&set > nul
+		for /f "tokens=1,2,3,4 delims=:. " %%a in ("%countdowntime%") do set ehr=%%a&set emin=%%b&set esec=%%c&set emsec=%%d&set > nul
+		set /a hr=%ehr%+%shr%
+		set /a min=%emin%+%smin%
+		set /a sec=%esec%+%ssec%	
+		set /a msec=%emsec%+%smsec%	
+		set alarmtime=%hr%:%min%:%sec%.%msec% 
+		echo %alarmtime%
+
+
+		:notalarmtime
+
+			if /i %time% == %alarmtime% goto countdowntimeup
+				echo %time%       %alarmtime%
+			goto :notalarmtime
+
+
+		:countdowntimeup
+			echo "***********"
+			echo "Beep Beep!"
+			echo.
+			echo.
+			if /i %countdownsoundchoice%== 1  start %countdownsoundfile%
+			if /i %countdownsoundchoice%== 2  start "" %countdownwebsite%
+
+
+		
 goto main
 
 
